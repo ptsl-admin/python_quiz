@@ -3,64 +3,19 @@ import random
 
 
 class QuizLoader:
+    """ The quiz loader class is actually the logic class, it handles all the actions in
+        coordination with the GUI class
+    """
     __QUIZ = []
-    __QUIZ_COUNT = 0
     __LAST_QUIZ_ID = -1
 
-    def __init__(self):
-        pass
-
-    def load_quiz_json_file(self):
-        #  we assume that there is quiz.json file inside assets folder
-        try:
-            with open('assets/quiz_functions.json', 'rt') as quiz_file:
-                self.__QUIZ = json.load(quiz_file)
-                # print(json.dumps(self.__QUIZ, indent=2))
-                return True
-        except FileNotFoundError:
-            return False
-
-    def load_quiz_from_text_file(self):
-        try:
-            with open('assets/quiz_functions.txt', 'rt') as quiz_file:
-                total_questions = quiz_file.readline().strip()
-                self.__QUIZ_COUNT = int(total_questions)
-                for line in quiz_file:
-                    question = line.strip()
-                    option1 = quiz_file.readline().strip()
-                    if option1.find("CORRECT:") != -1:
-                        correct_option = 1
-                        option1 = option1.replace("CORRECT:", "")
-                    option2 = quiz_file.readline().strip()
-                    if option2.find("CORRECT:") != -1:
-                        correct_option = 2
-                        option2 = option2.replace("CORRECT:", "")
-                    option3 = quiz_file.readline().strip()
-                    if option3.find("CORRECT:") != -1:
-                        correct_option = 3
-                        option3 = option3.replace("CORRECT:", "")
-                    option4 = quiz_file.readline().strip()
-                    if option4.find("CORRECT:") != -1:
-                        correct_option = 4
-                        option4 = option4.replace("CORRECT:", "")
-
-                    options = [option1, option2, option3, option4]
-
-                    # append each question as dictionary to the __QUIZ list
-                    self.__QUIZ.append(
-                        {
-                            "question": question,
-                            "options": options,
-                            "correct_option": correct_option
-                        }
-                    )
-
-            #print(json.dumps(self.__QUIZ, indent=4))
-            return True
-        except FileNotFoundError:
-            return False
+    def __init__(self, QUIZ: list):
+        """ Quiz loader constructor """
+        self.__QUIZ = QUIZ
+     
 
     def get_random_quiz(self, index = False):
+        """ form the list of quizs get a random one """
         if len(self.__QUIZ) == 0:
             return None
         
@@ -79,46 +34,64 @@ class QuizLoader:
         return quiz
 
     def get_total_question(self):
+        """ ge the total questions form the pulled data"""
         return len(self.__QUIZ)
 
     class Quiz:
+        """ The Quiz Class. returns all the quiz items individually """
 
         def __init__(self, quiz_dict, index):
+
+            """ initialize with quiz dict and assign to self  """
             #if isinstance(quiz_dict, dict):
-            self.index = index
-            self.__QUIZ_DICT = quiz_dict
+            self.index: int = index
+            self.__quiz_dict: dict = quiz_dict
 
         def question(self):
-            return self.__QUIZ_DICT["question"]
+            """ get the question item of the quiz """
+            return self.__quiz_dict["question"]
 
         def option1(self):
+            """ get option item 1 """
             if self.index:
-                return "1. " + self.__QUIZ_DICT["options"][0]
-            return self.__QUIZ_DICT["options"][0]
+                return "1. " + self.__quiz_dict["options"][0]
+            return self.__quiz_dict["options"][0]
 
         def option2(self):
+            """ get option item 2 """
             if self.index:
-                return "2. " + self.__QUIZ_DICT["options"][1]
-            return self.__QUIZ_DICT["options"][1]
+                return "2. " + self.__quiz_dict["options"][1]
+            return self.__quiz_dict["options"][1]
 
         
         def option3(self):
+            """ get option item 3 """
             if self.index:
-                return "3. " + self.__QUIZ_DICT["options"][2]
-            return self.__QUIZ_DICT["options"][2]
+                return "3. " + self.__quiz_dict["options"][2]
+            return self.__quiz_dict["options"][2]
 
         def option4(self):
+            """ get option item 4 """
             if self.index:
-                return "4. " + self.__QUIZ_DICT["options"][3]
-            return self.__QUIZ_DICT["options"][3]
+                return "4. " + self.__quiz_dict["options"][3]
+            return self.__quiz_dict["options"][3]
 
 
-        def correct(self):
-            return self.__QUIZ_DICT["correct_option"]
+        def correct(self)->int:
+            """ get the correct option index 1, 2, 3, 4"""
+            return self.__quiz_dict["correct_option"]
 
         def correct_answer(self):
-            return self.__QUIZ_DICT["options"][int(self.correct())-1]
+            """ get the correct answer, not the index but the item itself """
+            return self.__quiz_dict["options"][int(self.correct())-1]
 
+        
+        def is_correct_option(self, correct_index: int)-> bool:
+            """_summary_"""
+            
+            if self.correct() == correct_index:
+                return True
+            return False
 
 
 

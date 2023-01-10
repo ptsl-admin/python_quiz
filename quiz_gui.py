@@ -82,7 +82,7 @@ class App(tk.Tk):
 
 
     def load_next_quiz(self):
-        self.__quiz = quiz = self.__quiz_loader.get_random_quiz(index = True) 
+        self.__quiz = quiz = self.__quiz_loader.get_random_quiz(index = True)
 
         self.render_quiz(quiz)
         
