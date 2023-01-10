@@ -1,0 +1,16 @@
+3
+Which of the following are the two main parts of every function in Python?
+The function signature and the function corpus
+The function head and the function tail
+The function heading and the function body
+CORRECT:The function signature and the function body
+Which of the following keywords are used to create a loop in Python?
+loop
+foreach
+do
+CORRECT:while
+What is true for a Python function?
+A Python function can return only a single value.
+CORRECT:A function can take an unlimited number of arguments.
+A Python function doesn’t return anything unless and until you add a return statement.
+A Python function cannot return multiple values.

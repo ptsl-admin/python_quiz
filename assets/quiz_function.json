@@ -1,0 +1,32 @@
+[
+    {
+        "correct_option": 4,
+        "options": [
+            "The function signature and the function corpus",
+            "The function head and the function tail",
+            "The function heading and the function body",
+            "The function signature and the function body"
+        ],
+        "question": "Which of the following are the two main parts of every function in Python?"
+    },
+    {
+        "correct_option": 4,
+        "options": [
+            "loop",
+            "foreach",
+            "do",
+            "while"
+        ],
+        "question": "Which of the following keywords are used to create a loop in Python?"
+    },
+    {
+        "correct_option": 2,
+        "options": [
+            "A Python function can return only a single value.",
+            "A function can take an unlimited number of arguments.",
+            "A Python function doesn\u00e2\u20ac\u2122t return anything unless and until you add a return statement.",
+            "A Python function cannot return multiple values."
+        ],
+        "question": "What is true for a Python function?"
+    }
+]
